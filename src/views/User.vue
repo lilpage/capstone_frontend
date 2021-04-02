@@ -21,6 +21,7 @@ export default {
     favoritesShow: function () {
       axios.get("/api/favorites").then((response) => {
         console.log(response.data);
+        this.favorites = response.data;
       });
     },
   },
