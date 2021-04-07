@@ -1,7 +1,10 @@
 <template>
   <div class="user">
     <h1>This is your user page</h1>
-    {{ favorites }}
+    <div v-for="favorite in favorites" v-bind:key="favorite.id">
+      <p>{{ favorite }}</p>
+      <button>Remove</button>
+    </div>
   </div>
 </template>
 
