@@ -1,10 +1,15 @@
 <template>
   <div class="user">
-    <h1>This is your user page</h1>
+    <h6>This is your user page</h6>
+    <h1>Favorites</h1> 
     <div v-for="favorite in favorites" v-bind:key="favorite.id">
       <p>{{ favorite }}</p>
-      <button>Remove</button>
+      <button v-on:click="favoritesDestroy(favorite)" >Remove</button>
     </div>
+      <!-- ADMIN ONLY -->
+      <router-link to="/admin/recipes/edit">
+      <button>Edit Recipes</button>
+      </router-link>
   </div>
 </template>
 
@@ -18,13 +23,25 @@ export default {
     };
   },
   created: function () {
-    this.favoritesShow();
+    this.favoritesIndex();
+    this.userShow();
   },
   methods: {
-    favoritesShow: function () {
+    userShow: function () {
+      axios.get("/api/users").then((response) => {
+        console.log(response.data);
+      });
+    },
+    favoritesIndex: function () {
       axios.get("/api/favorites").then((response) => {
         console.log(response.data);
         this.favorites = response.data;
+      });
+    },
+    favoritesDestroy: function (favorite) {
+      axios.delete("/api/favorites/" + favorite.id).then(() => {
+        this.$router.go();
+        console.log("Successfully deleted");
       });
     },
   },

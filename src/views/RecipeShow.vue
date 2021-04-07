@@ -4,7 +4,7 @@
     <div>Ingredients: {{ recipe.ingredients }}</div>
     <div>Directions: {{ recipe.directions }}</div>
     <!-- Favorite  -->
-    <button v-on:click="addToFavorites()">favorite</button>
+    <button v-on:click="addToFavorites(recipe)">favorite</button>
   </div>
 </template>
 
@@ -30,9 +30,15 @@ export default {
         this.recipe = response.data;
       });
     },
-    addToFavorites: function () {
-      console.log("added to favorites");
-      // ?????
+    addToFavorites: function (recipe) {
+      let params = {
+        user_id: 1, //hardcoded!!!!!
+        recipe_id: recipe.id,
+      };
+      axios.post("/api/favorites", params).then((response) => {
+        console.log(response.data);
+        this.$router.push("/recipes");
+      });
     },
   },
 };

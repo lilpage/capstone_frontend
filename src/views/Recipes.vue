@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="recipes">
     <h1>Drinking Buddy</h1>
       <div v-for="recipe in recipes" v-bind:key="recipe.id">
         <h2>{{ recipe.name }}</h2>
