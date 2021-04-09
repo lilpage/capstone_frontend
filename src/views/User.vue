@@ -1,11 +1,13 @@
 <template>
   <div class="user">
+    <h1>Hello {{ this.current_user.user.name}}</h1>
     <h6>This is your user page</h6>
     <h1>Favorites</h1> 
     <div v-for="favorite in favorites" v-bind:key="favorite.id">
       <p>{{ favorite }}</p>
       <button v-on:click="favoritesDestroy(favorite)" >Remove</button>
     </div>
+    <button v-on:click="userDestroy()">Delete account</button>
       <!-- ADMIN ONLY -->
       <div id="admin-access" v-if="this.current_user.user.admin">
         <router-link to="/admin/recipes/edit">
@@ -36,11 +38,12 @@ export default {
         this.current_user = response.data;
       });
     },
-    // hasAdminAccess: function () {
-    //   if (this.current_user.admin === true) {
-    //     return true;
-    //   }
-    // },
+    userDestroy: function () {
+      axios.delete("/api/users/" + this.current_user.user.id).then(() => {
+        console.log("User deleted.");
+        this.$router.push("/");
+      });
+    },
     favoritesIndex: function () {
       axios.get("/api/favorites").then((response) => {
         console.log(response.data);
