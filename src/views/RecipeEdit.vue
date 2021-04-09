@@ -1,5 +1,5 @@
 <template>
-  <div id="admin-edit">
+  <div id="admin-edit" v-if="this.current_user.user.admin">
     <h1>This is the recipe edit page. ADMIN ONLY!!</h1>
     <div v-for="recipe in recipes" v-bind:key="recipe.id">
         <h2>{{ recipe.name }}</h2>
@@ -18,16 +18,27 @@ export default {
   data: function () {
     return {
       recipes: [],
+      current_user: {},
     };
   },
   created: function () {
     this.indexRecipes();
+    this.userShow();
+  },
+  mounted: function () {
+    console.log(this.$admin);
   },
   methods: {
     indexRecipes: function () {
       axios.get("/api/recipes").then((response) => {
         console.log(response.data);
         this.recipes = response.data;
+      });
+    },
+    userShow: function () {
+      axios.get("/api/users").then((response) => {
+        console.log(response.data);
+        this.current_user = response.data;
       });
     },
     recipeUpdate: function (recipe) {

@@ -13,6 +13,8 @@ if (jwt) {
   axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;
 }
 
+// Vue.prototype.$admin = localStorage.getItem("admin");
+
 Vue.config.productionTip = false;
 
 new Vue({
