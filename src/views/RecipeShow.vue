@@ -32,7 +32,7 @@ export default {
     },
     addToFavorites: function (recipe) {
       let params = {
-        user_id: 1, //hardcoded!!!!!
+        user_id: localStorage.getItem("user_id"),
         recipe_id: recipe.id,
       };
       axios.post("/api/favorites", params).then((response) => {

@@ -40,8 +40,8 @@ export default {
     },
     favoritesDestroy: function (favorite) {
       axios.delete("/api/favorites/" + favorite.id).then(() => {
-        this.$router.go();
         console.log("Successfully deleted");
+        this.favorites.splice(this.favorites.indexOf(favorite), 1);
       });
     },
   },
