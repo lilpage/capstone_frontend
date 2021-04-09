@@ -7,9 +7,11 @@
       <button v-on:click="favoritesDestroy(favorite)" >Remove</button>
     </div>
       <!-- ADMIN ONLY -->
-      <router-link to="/admin/recipes/edit">
-      <button>Edit Recipes</button>
-      </router-link>
+      <div id="admin-access" v-if="this.current_user.user.admin">
+        <router-link to="/admin/recipes/edit">
+        <button>Edit Recipes</button>
+        </router-link>
+      </div>
   </div>
 </template>
 
@@ -20,6 +22,7 @@ export default {
   data: function () {
     return {
       favorites: [],
+      current_user: {},
     };
   },
   created: function () {
@@ -30,8 +33,14 @@ export default {
     userShow: function () {
       axios.get("/api/users").then((response) => {
         console.log(response.data);
+        this.current_user = response.data;
       });
     },
+    // hasAdminAccess: function () {
+    //   if (this.current_user.admin === true) {
+    //     return true;
+    //   }
+    // },
     favoritesIndex: function () {
       axios.get("/api/favorites").then((response) => {
         console.log(response.data);
