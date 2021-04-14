@@ -4,7 +4,7 @@
     <h6>This is your user page</h6>
     <h1>Favorites</h1> 
     <div v-for="favorite in favorites" v-bind:key="favorite.id">
-      <p>{{ favorite }}</p>
+      <p>{{ favorite.name }}</p>
       <button v-on:click="favoritesDestroy(favorite)" >Remove</button>
     </div>
     <button v-on:click="userDestroy()">Delete account</button>

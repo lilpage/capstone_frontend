@@ -9,6 +9,12 @@
         <button v-on:click="recipeDestroy(recipe)">Delete</button>
       </div>
   </div>
+  <div v-else>
+    <h1>Looks like you're not supposed to be here...</h1>
+    <router-link v-bind:to="`/recipes`">
+      <button>Take me back</button>
+    </router-link>
+  </div>
 </template> 
 
 <script>
