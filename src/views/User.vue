@@ -39,10 +39,12 @@ export default {
       });
     },
     userDestroy: function () {
-      axios.delete("/api/users/" + this.current_user.user.id).then(() => {
-        console.log("User deleted.");
-        this.$router.push("/");
-      });
+      if (confirm("Are you sure?")) {
+        axios.delete("/api/users/" + this.current_user.user.id).then(() => {
+          console.log("User deleted.");
+          this.$router.push("/");
+        });
+      }
     },
     favoritesIndex: function () {
       axios.get("/api/favorites").then((response) => {

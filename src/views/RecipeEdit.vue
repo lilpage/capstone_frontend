@@ -52,11 +52,16 @@ export default {
         console.log(response.data);
       });
     },
+    deleteCheck: function () {
+      document.querySelector("delete-check").showModal();
+    },
     recipeDestroy: function (recipe) {
-      axios.delete("/api/recipes/" + recipe.id).then(() => {
-        console.log("Successfully deleted");
-        this.recipes.splice(this.recipes.indexOf(recipe), 1);
-      });
+      if (confirm("Are you sure?")) {
+        axios.delete("/api/recipes/" + recipe.id).then(() => {
+          console.log("Successfully deleted");
+          this.recipes.splice(this.recipes.indexOf(recipe), 1);
+        });
+      }
     },
   },
 };
