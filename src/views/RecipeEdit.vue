@@ -1,4 +1,5 @@
 <template>
+<!-- Admin access -->
   <div id="admin-edit" v-if="this.current_user.user.admin">
     <h1>This is the recipe edit page. ADMIN ONLY!!</h1>
     <div v-for="recipe in recipes" v-bind:key="recipe.id">
@@ -9,6 +10,7 @@
         <button v-on:click="recipeDestroy(recipe)">Delete</button>
       </div>
   </div>
+  <!-- Admin denied -->
   <div v-else>
     <h1>Looks like you're not supposed to be here...</h1>
     <router-link v-bind:to="`/recipes`">

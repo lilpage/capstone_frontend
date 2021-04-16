@@ -3,7 +3,11 @@
     <h1>Drinking Buddy</h1>
       <div v-for="recipe in recipes" v-bind:key="recipe.id">
         <h2>{{ recipe.name }}</h2>
-        <p>Ingredients: {{ recipe.ingredients }}</p>
+        <!-- List Ingredients & AMOUNTS TBD -->
+          <ul> 
+            <li v-for="ingredient in recipe.ingredients" v-bind:key="ingredient.id"> {{ ingredient.name }}</li>
+          </ul>
+        <!-- List directions -->
         <p>Directions: {{ recipe.directions }}</p>
         <router-link v-bind:to="`/recipes/${recipe.id}`">
           <button>See More</button>
