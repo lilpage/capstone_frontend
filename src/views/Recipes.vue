@@ -4,12 +4,12 @@
       <div v-for="recipe in recipes" v-bind:key="recipe.id">
         <h2>{{ recipe.name }}</h2>
         <!-- List Ingredients -->
-        <ul> 
+        <ul id="ingredients"> 
           <li v-for="ingredient in recipe.ingredient_lists" v-bind:key="ingredient.id"> {{ ingredient.amount }} {{ ingredient.ingredients }}</li>
         </ul>
         <!-- List directions -->
         <h4>Directions: </h4>
-        <ol>
+        <ol id="directions">
           <li v-for="direction in recipe.directions" v-bind:key="direction.id">{{ direction }}</li>
         </ol>
         <!-- Buttons -->
