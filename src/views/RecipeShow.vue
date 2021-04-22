@@ -1,8 +1,18 @@
 <template>
   <div class="recipe-show">
-    <h2>{{ recipe.name }}</h2>
-    <div>Ingredients: {{ recipe.ingredients }}</div>
-    <div>Directions: {{ recipe.directions }}</div>
+    <h1>{{ recipe.name }}</h1>
+    <div>
+      <h2>Ingredients:</h2>
+      <ul> 
+          <li v-for="ingredient in recipe.ingredient_lists" v-bind:key="ingredient.id"> {{ ingredient.amount }} {{ ingredient.ingredients }}</li>
+        </ul>
+    </div>
+    <div>
+      <h2>Directions: </h2>
+      <ol>
+        <li v-for="direction in recipe.directions" v-bind:key="direction.id">{{ direction }}</li>
+      </ol>
+    </div>
     <!-- Favorite  -->
     <button v-on:click="addToFavorites(recipe)">favorite</button>
   </div>

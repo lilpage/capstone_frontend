@@ -3,9 +3,16 @@
   <div id="admin-edit" v-if="this.current_user.user.admin">
     <h1>This is the recipe edit page. ADMIN ONLY!!</h1>
     <div v-for="recipe in recipes" v-bind:key="recipe.id">
-        <h2>{{ recipe.name }}</h2>
-        <p>Ingredients: {{ recipe.ingredients }}</p>
-        <p>Directions: {{ recipe.directions }}</p>
+      <h2>{{ recipe.name }}</h2>
+        <!-- List Ingredients -->
+        <ul> 
+          <li v-for="ingredient in recipe.ingredient_lists" v-bind:key="ingredient.id"> {{ ingredient.amount }} {{ ingredient.ingredients }}</li>
+        </ul>
+        <!-- List directions -->
+        <h4>Directions: </h4>
+        <ol>
+          <li v-for="direction in recipe.directions" v-bind:key="direction.id">{{ direction }}</li>
+        </ol>
         <button v-on:click="recipeUpdate(recipe)">Update</button>
         <button v-on:click="recipeDestroy(recipe)">Delete</button>
       </div>

@@ -18,7 +18,7 @@
           <button>See More</button>
         </router-link>
         <!-- Button for action -->
-        <button v-on:click="addToFavorites()">Favorite</button>
+        <button v-on:click="addToFavorites(recipe)">Favorite</button>
       </div>
   </div>
 </template>
@@ -52,7 +52,6 @@ export default {
       };
       axios.post("/api/favorites", params).then((response) => {
         console.log(response.data);
-        this.$router.push("/recipes");
       });
     },
   },
