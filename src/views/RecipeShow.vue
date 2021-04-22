@@ -9,12 +9,12 @@
     </div>
     <div>
       <h2>Directions: </h2>
-      <ol id ="tags">
+      <ol>
         <li v-for="direction in recipe.directions" v-bind:key="direction.id">{{ direction }}</li>
       </ol>
     </div>
     <!-- Tags list -->
-    <ul> 
+    <ul id ="tags"> 
       <li v-for="tag in recipe.tags" v-bind:key="tag.id"> {{ tag.name }} </li>
     </ul>
     <!-- Favorite  -->
