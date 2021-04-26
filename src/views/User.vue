@@ -1,6 +1,6 @@
 <template>
   <div class="user">
-    <h1>Hello {{ this.current_user.user.name}}</h1>
+    <!-- <h1>Hello {{ this.current_user.user.name}}</h1> -->
     <!-- Your Favorited Recipes -->
     <h2>Your Recipes</h2> 
     <div v-for="favorite in favorites" v-bind:key="favorite.id">
@@ -17,6 +17,37 @@
         <button v-if="!fridge.in_stock" v-on:click="fridgeRemove(fridge)">Remove</button>
       </div>
     </div>
+       <section class="section bg-services" id="services">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title-box text-center">
+                        <h3 class="title-heading mt-4">Hello {{ this.current_user.user.name}}</h3>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Recipes Cards -->
+            <div class="row mt-5 pt-4">
+                <div class="col-lg-4" v-for="favorite in favorites" v-bind:key="favorite.id">
+                    <div class="services-box p-4 mt-4">
+                        <div class="services-icon bg-soft-primary">
+                            <i class="mdi mdi-google text-primary"></i>
+                        </div>
+
+                        <h5 class="mt-4">{{ favorite.name }}</h5>
+                        <p class="text-muted mt-3">{{ favorite.name}}</p>
+
+                        <div class="mt-3">
+                            <a href="" class="text-primary f-16">Learn More <i class="mdi mdi-arrow-right ml-1"></i></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Delete Account -->
     <button v-on:click="userDestroy()">Delete account</button>
       <!-- ADMIN ONLY -->
