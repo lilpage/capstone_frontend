@@ -12,7 +12,7 @@
         </div>
         <!-- Recipes Start -->
         <div id= "user-recipes" class="container">
-          <h2 class="text-info">Favorited Recipes</h2>
+          <h2 class="text-info">Your Favorited Recipes</h2>
           <!-- Recipes Cards -->  
           <div class="row">
               <div class="col-lg-4" v-for="favorite in favorites" v-bind:key="favorite.id">

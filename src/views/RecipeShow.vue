@@ -1,24 +1,100 @@
 <template>
-  <div class="recipe-show">
-    <h1>{{ recipe.name }}</h1>
-    <div>
-      <h2>Ingredients:</h2>
-      <ul> 
-          <li v-for="ingredient in recipe.ingredient_lists" v-bind:key="ingredient.id"> {{ ingredient.amount }} {{ ingredient.ingredients }}</li>
-        </ul>
-    </div>
-    <div>
-      <h2>Directions: </h2>
-      <ol>
-        <li v-for="direction in recipe.directions" v-bind:key="direction.id">{{ direction }}</li>
-      </ol>
-    </div>
-    <!-- Tags list -->
-    <ul id ="tags"> 
-      <li v-for="tag in recipe.tags" v-bind:key="tag.id"> {{ tag.name }} </li>
-    </ul>
-    <!-- Favorite  -->
-    <button v-on:click="addToFavorites(recipe)">favorite</button>
+  <div class="recipes-show">
+
+
+    <section class="bg-account-pages vh-100">
+        <div class="display-table">
+            <div class="display-table-cell">
+                <div class="container">
+                    <div class="row no-gutters align-items-center">
+
+                        <div class="col-lg-12">
+                            <div class="login-box">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-lg-6">
+                                        <div class="bg-light">
+
+                                            <div class="row justify-content-center">
+                                                <div class="col-lg-10">
+
+                                                    <div
+                                                        class="home-img text-center d-none d-lg-inline-block">
+
+                                                        <div class="animation-1"></div>
+                                                        <div class="animation-2"></div>
+                                                        <div class="animation-3"></div>
+
+
+                                                        <img src="https://images.unsplash.com/photo-1554219962-f71d858fa121?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" class="img-fluid" alt="">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-lg-6">
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-11">
+
+                                                <div class="p-4">
+                                                    <div class="text-center mt-3">
+                                                        <h1 class="text-warning"><b>{{ recipe.name }}</b></h1>
+                                                        <img src="/images/home-border.png">
+                                                        <div>
+                                                          <h2 class="text-info mt-3">Ingredients:</h2>
+                                                          <ul> 
+                                                              <li v-for="ingredient in recipe.ingredient_lists" v-bind:key="ingredient.id"> {{ ingredient.amount }} {{ ingredient.ingredients }}</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div>
+                                                          <h2 class="text-info">Directions: </h2>
+                                                          <ol>
+                                                            <li v-for="direction in recipe.directions" v-bind:key="direction.id">{{ direction }}</li>
+                                                          </ol>
+                                                        </div>
+                                                         <!-- Tags list -->
+                                                        <ul id ="tags"> 
+                                                          <li v-for="tag in recipe.tags" v-bind:key="tag.id"> {{ tag.name }} </li>
+                                                        </ul>
+                                                        <!-- Favorite  -->
+                                                        <button v-on:click="addToFavorites(recipe)" class="btn-primary">Add to Favorites</button>
+                                                        <router-link v-bind:to="`/recipes`">
+                                                          <button class="btn-primary ml-3">Back to All Recipes</button>
+                                                        </router-link>
+                                                    </div>
+                                                    <div class="p-3 custom-form">
+  
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+
+
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+        </div>
+    </section>
+    <!-- end account-pages  -->
+
   </div>
 </template>
 
