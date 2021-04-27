@@ -817,13 +817,14 @@ p {
 }
 
 .navbar-custom {
-  padding: 0px;
+  padding: 0pxx;
   width: 100%;
   border-radius: 0px;
   z-index: 999;
   margin-bottom: 0px;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
+  background-color: whitesmoke;
 }
 
 .navbar-custom .navbar-nav li a {

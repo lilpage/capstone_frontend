@@ -1,8 +1,6 @@
 <template>
   <div class="recipes-show">
-
-
-    <section class="bg-account-pages vh-100">
+    <section class="bg-account-pages vh-100 mt-3">
         <div class="display-table">
             <div class="display-table-cell">
                 <div class="container">
@@ -21,7 +19,6 @@
                                                         class="home-img text-center d-none d-lg-inline-block">
 
                                                         <div class="animation-1"></div>
-                                                        <div class="animation-2"></div>
                                                         <div class="animation-3"></div>
 
 

@@ -1,6 +1,6 @@
 <template>
   <div class="user">
-    <section class="section bg-services" id="services">
+    <section class="section bg-services mt-4" id="services">
     <div class="container">
 
         <div class="row">
