@@ -1,17 +1,19 @@
 <template>
   <div class="home">
-        <section class="bg-home bg-light" id="home">
+
+    <section class="bg-home bg-primary" id="home">
         <div class="home-center">
             <div class="home-desc-center">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-6">
                             <div class="home-content">
-                                <img src="images/home-border.png" height="15" alt="">
-                                <h1 class="home-title mt-4">Welcome to <br> Drinking Buddy!</h1>
+                                <h1 id="greeting-message">You <br> deserve <br> a drink</h1>
+                                <!-- <img src="/images/home-border.png" height="15" alt=""> -->
                                 <p class="text-muted mt-4 f-20"></p>
                                 <div class="mt-4 pt-2">
-                                    <a href="/recipes" class="btn btn-primary mr-3">You deserve a drink</a>
+                                    <a href="/recipes" class="btn btn-primary mr-3">Get drinking</a>
+                                    <a href="/" class="btn btn-primary mr-3">I can't decide!</a>
                                 </div>
                             </div>
                         </div>
@@ -23,7 +25,7 @@
                                 <div class="animation-3"></div>
 
 
-                                <img src="/images/features/tempsplash.jpg" class="img-fluid" alt="">
+                                <!-- <img src="/images/features/tempsplash.jpg" class="img-fluid" alt=""> -->
                             </div>
                         </div>
                     </div>
