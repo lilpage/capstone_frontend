@@ -214,6 +214,11 @@ p {
   text-shadow: 2px 2px orangered;
 }
 
+#db-logo {
+  font-family: 'Slackey';
+  color: #1ea59a !important;
+}
+
 /* TESTING END */
 
 
