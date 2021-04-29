@@ -1345,6 +1345,21 @@ p {
   border-radius: 0px 0px 350px 0px;
 }
 
+.bg-favorites {
+  border-radius: 0px 350px 350px 0px;
+  background-color: orangered;
+}
+
+.bg-fridge {
+  border-radius: 350px 0px 0px 350px;
+  background-color: mediumturquoise;  
+}
+
+.bg-userpage {
+  height: 10px;
+  text-align: center;
+}
+
 .count-box {
   padding-right: 50px;
   padding: 13px 20px;

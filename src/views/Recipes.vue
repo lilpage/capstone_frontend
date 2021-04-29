@@ -1,11 +1,11 @@
 <template>
   <div class="recipes">
-    <section class="section bg-primary bg-features mt-5">
+    <section class="section bg-info bg-features mt-5">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="text-center">
-                        <h1 class="text-light mt-4"><b>Browse All Recipes</b></h1>
+                        <h1 class="user-greeting mt-4 text-light"><b>Browse All Recipes</b></h1>
                     </div>
                 </div>
             </div>

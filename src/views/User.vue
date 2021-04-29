@@ -1,22 +1,27 @@
 <template>
   <div class="user">
-    <section class="section bg-services mt-4" id="services">
+    <section class="section bg-warning bg-userpage mt-5" id="services">
     <div class="container">
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="title-box text-center">
-                    <h1 class="user-greeting text-warning"><b>Hello {{ this.current_user.user.name}}</b></h1>
+                    <h1 class="user-greeting text-light"><b>Hello {{ this.current_user.user.name}}</b></h1>
+                    <p class="text-light mb-3">Your Fridge | Account Management</p>
                 </div>
             </div>
         </div>
-        <!-- Recipes Start -->
+      </div>
+    </section>
+    <!-- Recipes Start -->
+    <section class="section bg-favorites">
+      <div>
         <div id= "user-recipes" class="container">
-          <h2 class="text-info">Your Favorited Recipes</h2>
+          <h2 class="text-light"><b>Your Favorited Recipes</b></h2>
           <!-- Recipes Cards -->  
           <div class="row">
               <div class="col-lg-4" v-for="favorite in favorites" v-bind:key="favorite.id">
-                  <div class="services-box p-4 mt-4">
+                  <div class="services-box bg-light p-4 mt-4">
                       <img :src="favorite.image" width="300">
                       <h5 class="mt-4">{{ favorite.name }}</h5>
                       <div class="mt-3">
@@ -28,28 +33,29 @@
               </div>
           </div>
         </div>
-        <!-- Recipes End -->
-        <!-- Fridge Start -->
-        <div id="user-fridge">
-          <h2 class="pt-4 mt-4 text-info">Your Fridge</h2> 
-          <!-- Ingredient List -->
-          <div v-for="fridge in fridges" v-bind:key="fridge.id">  
-            <ul class="list-group">
-              <li class="list-group-item list-group-item-primary">
-                <p> {{ fridge.ingredient }} </p>
-                <button v-if="fridge.in_stock" v-on:click="fridgeUpdate(fridge)" class="btn btn-primary mr-3">Out of Stock</button>
-                <button v-else v-on:click="fridgeUpdate(fridge)" class="btn btn-primary mr-3">In Stock</button>
-                <button v-if="!fridge.in_stock" v-on:click="fridgeRemove(fridge)" class="btn btn-primary mr-3">Remove</button>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- Fridge End -->
       </div>
+    </section>
+    <!-- Fridge Start -->
+    <section class="section bg-fridge">
+      <div id="user-fridge" class="container">
+        <h2 class="pt-4 mt-4 text-light"><b>Your Fridge</b></h2> 
+        <!-- Ingredient List -->
+        <div v-for="fridge in fridges" v-bind:key="fridge.id">  
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-light">
+              <p> {{ fridge.ingredient }} </p>
+              <button v-if="fridge.in_stock" v-on:click="fridgeUpdate(fridge)" class="btn btn-primary mr-3">Out of Stock</button>
+              <button v-else v-on:click="fridgeUpdate(fridge)" class="btn btn-primary mr-3">In Stock</button>
+              <button v-if="!fridge.in_stock" v-on:click="fridgeRemove(fridge)" class="btn btn-primary mr-3">Remove</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Fridge End -->
     </section>
     <!-- ACCOUNT MANAGEMENT -->
     <!-- Delete Account -->
-    <div class="container">
+    <div class="container mt-3 mb-3">
       <h2 class="text-info">Account Management</h2>
       <button v-on:click="userDestroy()" class="btn btn-primary mt-3 mb-3">Delete account</button>
         <!-- ADMIN ONLY -->
@@ -58,7 +64,7 @@
           <button class="btn btn-primary mb-3">Edit Recipes</button>
           </router-link>
         </div>
-      </div>
+    </div>
   </div>
 </template>
 
