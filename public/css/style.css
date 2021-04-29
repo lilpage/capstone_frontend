@@ -219,6 +219,11 @@ p {
   color: #1ea59a !important;
 }
 
+.user-greeting {
+  font-family: 'Bungee', sans-serif;
+  font-size: 50px;
+}
+
 /* TESTING END */
 
 

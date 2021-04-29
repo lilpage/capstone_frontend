@@ -22,7 +22,7 @@
                                                         <div class="animation-3"></div>
 
 
-                                                        <img src="https://images.unsplash.com/photo-1554219962-f71d858fa121?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" class="img-fluid" alt="">
+                                                        <img :src="recipe.image" class="img-fluid" alt="">
                                                     </div>
 
                                                 </div>

@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="title-box text-center">
-                    <h1 class="user-greeting text-primary"><b>Hello {{ this.current_user.user.name}}</b></h1>
+                    <h1 class="user-greeting text-warning"><b>Hello {{ this.current_user.user.name}}</b></h1>
                 </div>
             </div>
         </div>
@@ -17,7 +17,7 @@
           <div class="row">
               <div class="col-lg-4" v-for="favorite in favorites" v-bind:key="favorite.id">
                   <div class="services-box p-4 mt-4">
-                      <img src="https://images.unsplash.com/photo-1554219962-f71d858fa121?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" width="300">
+                      <img :src="favorite.image" width="300">
                       <h5 class="mt-4">{{ favorite.name }}</h5>
                       <div class="mt-3">
                           <router-link v-bind:to="`/recipes/${favorite.recipe_id}`" class="btn btn-primary mr-3">Full Recipe</router-link>
