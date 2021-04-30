@@ -2,8 +2,36 @@
 <!-- Admin access -->
   <div id="admin-edit" v-if="this.current_user.user.admin">
     <h1>This is the recipe edit page. ADMIN ONLY!!</h1>
+    <br>
+    <br>
+    <div id="create-recipe">
+      <div class="container">
+      <h2>Add Recipe</h2>
+        <form>
+          <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Recipe Name" v-model="name">
+          </div>
+
+          <div class="form-group">
+              <label for="directions">Directions</label>
+              <input type="text" class="form-control" id="directions" placeholder="Enter directions..." v-model="directions">
+          </div>
+
+          <div class="form-group">
+              <label for="image">Image</label>
+              <input type="text" class="form-control" id="image" placeholder="Enter image url" v-model="image">
+          </div>
+
+          <div class="mt-3">
+              <button v-on:click="recipeCreate()" class="btn btn-primary btn-block">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
     <div v-for="recipe in recipes" v-bind:key="recipe.id">
       <h2>{{ recipe.name }}</h2>
+        <img :src="recipe.image" width="300px">
         <!-- List Ingredients -->
         <ul> 
           <li v-for="ingredient in recipe.ingredient_lists" v-bind:key="ingredient.id"> {{ ingredient.amount }} {{ ingredient.ingredients }}</li>
@@ -13,13 +41,35 @@
         <ol>
           <li v-for="direction in recipe.directions" v-bind:key="direction.id">{{ direction }}</li>
         </ol>
-        <button v-on:click="recipeUpdate(recipe)">Update</button>
+        <button v-on:click="recipeShow(recipe)">Edit</button>
+        <!-- Update Recipe Modal -->
+        <dialog id="recipe-info">
+          <form method="dialog">
+            <h3>{{ currentRecipe.name }}</h3><br>
+            Name: <input type="text" v-model="currentRecipe.name"> <br>
+            Directions: <input type="text" v-model="currentRecipe.directions"> <br>
+            Image Url: <input type="text" v-model="currentRecipe.image"> <br>
+            <button v-on:click="recipeUpdate(currentRecipe)">Update</button><br> 
+            INGREDIENTS<br>
+            <ul> 
+              <li v-for="ingredient in currentRecipe.ingredient_lists" v-bind:key="ingredient.id">
+                {{ ingredient.amount }} {{ ingredient.ingredients }}
+                <button v-on:click="ingredientsDestroy(ingredient)">Remove</button>
+              </li>
+            </ul>
+            Ingredient Id:<input type="text" v-model="ingredient_id"><br>
+            Amount:<input type="text" v-model="amount"><br>
+            <button v-on:click="ingredientsCreate(currentRecipe)">Add Ingredient</button><br>
+            <button>Close</button>
+          </form>
+        </dialog>
+        <!-- Delete Recipe -->
         <button v-on:click="recipeDestroy(recipe)">Delete</button>
       </div>
   </div>
   <!-- Admin denied -->
   <div v-else>
-    
+    <!-- router to 404 page -->
   </div>
 </template> 
 
@@ -31,6 +81,13 @@ export default {
     return {
       recipes: [],
       current_user: {},
+      name: "",
+      directions: [],
+      image: "",
+      errors: [],
+      currentRecipe: {},
+      ingredient_id: "",
+      ammount: "",
     };
   },
   created: function () {
@@ -53,13 +110,58 @@ export default {
         this.current_user = response.data;
       });
     },
-    recipeUpdate: function (recipe) {
-      axios.patch("/api/recipes/" + recipe.id).then((response) => {
-        console.log(response.data);
-      });
+    recipeUpdate: function (currentRecipe) {
+      var params = {
+        name: currentRecipe.name,
+        directions: currentRecipe.directions,
+        image: currentRecipe.image,
+      };
+      axios
+        .patch("/api/recipes/" + currentRecipe.id, params)
+        .then((response) => {
+          console.log(response.data);
+        });
     },
-    deleteCheck: function () {
-      document.querySelector("delete-check").showModal();
+    recipeCreate: function () {
+      var params = {
+        name: this.name,
+        directions: this.directions,
+        image: this.image,
+      };
+      axios
+        .post("/api/recipes", params)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
+    },
+    recipeShow: function (recipe) {
+      this.currentRecipe = recipe;
+      document.querySelector("#recipe-info").showModal();
+    },
+    ingredientsCreate: function (currentRecipe) {
+      var params = {
+        ingredient_id: this.ingredient_id,
+        recipe_id: currentRecipe.id,
+        amount: this.amount,
+      };
+      axios
+        .post("/api/ingredientlists", params)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
+    },
+    ingredientsDestroy: function (ingredient) {
+      if (confirm("Are you sure?")) {
+        axios.delete("/api/ingredientlists/" + ingredient.id).then(() => {
+          console.log("Successfully deleted");
+        });
+      }
     },
     recipeDestroy: function (recipe) {
       if (confirm("Are you sure?")) {
