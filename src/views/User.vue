@@ -20,18 +20,24 @@
           <h2 class="text-light"><b>Your Favorited Recipes</b></h2>
           <!-- Recipes Cards -->  
           <div class="row">
+            <!-- Empty Favorties Array -->
+            <div v-if="this.favorites.length === 0">
+              <p>You don't like anything yet! Go looking?</p>
+            </div>
+            <div v-else>
               <div class="col-lg-4" v-for="favorite in favorites" v-bind:key="favorite.id">
-                  <div class="services-box bg-light p-4 mt-4">
-                      <img :src="favorite.image" width="300">
-                      <h5 class="mt-4">{{ favorite.name }}</h5>
-                      <div class="mt-3">
-                          <router-link v-bind:to="`/recipes/${favorite.recipe_id}`" class="btn btn-primary mr-3">Full Recipe</router-link>
-                          <button v-on:click="favoritesDestroy(favorite)" class="btn btn-primary mr-3">Remove</button>
-                      </div>
-
+                    <div class="services-box bg-light p-4 mt-4">
+                        <img :src="favorite.image" width="300">
+                        <h5 class="mt-4">{{ favorite.name }}</h5>
+                        <div class="mt-3">
+                            <router-link v-bind:to="`/recipes/${favorite.recipe_id}`" class="btn btn-primary mr-3">Full Recipe</router-link>
+                            <button v-on:click="favoritesDestroy(favorite)" class="btn btn-primary mr-3">Remove</button>
+                        </div>
+                    </div>
                   </div>
               </div>
           </div>
+          <!-- Recipes Cards End-->
         </div>
       </div>
     </section>
@@ -40,16 +46,23 @@
       <div id="user-fridge" class="container">
         <h2 class="pt-4 mt-4 text-light"><b>Your Fridge</b></h2> 
         <!-- Ingredient List -->
-        <div v-for="fridge in fridges" v-bind:key="fridge.id">  
-          <ul class="list-group">
-            <li class="list-group-item list-group-item-light">
-              <p> {{ fridge.ingredient }} </p>
-              <button v-if="fridge.in_stock" v-on:click="fridgeUpdate(fridge)" class="btn btn-primary mr-3">Out of Stock</button>
-              <button v-else v-on:click="fridgeUpdate(fridge)" class="btn btn-primary mr-3">In Stock</button>
-              <button v-if="!fridge.in_stock" v-on:click="fridgeRemove(fridge)" class="btn btn-primary mr-3">Remove</button>
-            </li>
-          </ul>
+        <!-- For Empty Ingredients List -->
+        <div v-if="this.fridges.length === 0">
+          <p>Your fridge is empty! Add something?</p>
         </div>
+        <div v-else>
+          <div v-for="fridge in fridges" v-bind:key="fridge.id">  
+            <ul class="list-group">
+              <li class="list-group-item list-group-item-light">
+                <p> {{ fridge.ingredient }} </p>
+                <button v-if="fridge.in_stock" v-on:click="fridgeUpdate(fridge)" class="btn btn-primary mr-3">Out of Stock</button>
+                <button v-else v-on:click="fridgeUpdate(fridge)" class="btn btn-primary mr-3">In Stock</button>
+                <button v-if="!fridge.in_stock" v-on:click="fridgeRemove(fridge)" class="btn btn-primary mr-3">Remove</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- List End -->
       </div>
       <!-- Fridge End -->
     </section>
