@@ -11,19 +11,19 @@
             </div>
         </div>
     </section>
-    <section class="section bg-services">
+    <section class="section-index bg-services">
       <div id= "user-recipes" class="container">
         <!-- Recipes Cards -->  
         <div class="row">
             <div class="col-lg-4" v-for="recipe in recipes" v-bind:key="recipe.id">
-                <div class="services-box p-4 mt-4">
-                  <img v-bind:src="recipe.image" width=300px>
-                  <h2 class="text-warning mt-3 mb-3"><b>{{ recipe.name }}</b></h2>
+                <div class="services-box bg-danger p-4 mt-4">
+                  <h2 class="text-warning mt-3 mb-3  bg-danger pt-3 pb-3 text-center" id="recipe-title"><b>{{ recipe.name }}</b></h2>
+                  <img v-bind:src="recipe.image" width=300px><br>
                     <router-link v-bind:to="`/recipes/${recipe.id}`">
-                      <button class="btn-info mr-3">See More</button>
+                      <button class="btn btn-danger mr-3 mt-3">See More</button>
                     </router-link>
                     <!-- Button for action -->
-                    <button v-on:click="addToFavorites(recipe)" class="btn-info">Favorite</button>
+                    <button v-on:click="addToFavorites(recipe)" class="btn btn-warning mr-3 mt-3">Favorite</button>
                 </div>
             </div>
         </div>

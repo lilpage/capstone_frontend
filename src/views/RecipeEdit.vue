@@ -1,12 +1,22 @@
 <template>
 <!-- Admin access -->
   <div id="admin-edit" v-if="this.current_user.user.admin">
-    <h1>This is the recipe edit page. ADMIN ONLY!!</h1>
-    <br>
-    <br>
-    <div id="create-recipe">
+    <!-- Banner -->
+    <section class="section bg-danger bg-userpage mt-5" id="banner">
       <div class="container">
-      <h2>Add Recipe</h2>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-box text-center">
+                    <h1 class="user-greeting text-light"><b>Admin Edit page</b></h1>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+    <!-- Create Recipe -->
+    <section class="section bg-create-recipe">
+      <div class="container text-light">
+      <h2><b>Add Recipe</b></h2>
         <form>
           <div class="form-group">
               <label for="name">Name</label>
@@ -24,48 +34,59 @@
           </div>
 
           <div class="mt-3">
-              <button v-on:click="recipeCreate()" class="btn btn-primary btn-block">Create</button>
+              <button v-on:click="recipeCreate()" class="btn btn-danger btn-block">Create</button>
           </div>
         </form>
       </div>
-    </div>
-    <div v-for="recipe in recipes" v-bind:key="recipe.id">
-      <h2>{{ recipe.name }}</h2>
-        <img :src="recipe.image" width="300px">
-        <!-- List Ingredients -->
-        <ul> 
-          <li v-for="ingredient in recipe.ingredient_lists" v-bind:key="ingredient.id"> {{ ingredient.amount }} {{ ingredient.ingredients }}</li>
-        </ul>
-        <!-- List directions -->
-        <h4>Directions: </h4>
-        <ol>
-          <li v-for="direction in recipe.directions" v-bind:key="direction.id">{{ direction }}</li>
-        </ol>
-        <button v-on:click="recipeShow(recipe)">Edit</button>
-        <!-- Update Recipe Modal -->
-        <dialog id="recipe-info">
-          <form method="dialog">
-            <h3>{{ currentRecipe.name }}</h3><br>
-            Name: <input type="text" v-model="currentRecipe.name"> <br>
-            Directions: <input type="text" v-model="currentRecipe.directions"> <br>
-            Image Url: <input type="text" v-model="currentRecipe.image"> <br>
-            <button v-on:click="recipeUpdate(currentRecipe)">Update</button><br> 
-            INGREDIENTS<br>
-            <ul> 
-              <li v-for="ingredient in currentRecipe.ingredient_lists" v-bind:key="ingredient.id">
-                {{ ingredient.amount }} {{ ingredient.ingredients }}
-                <button v-on:click="ingredientsDestroy(ingredient)">Remove</button>
-              </li>
-            </ul>
-            Ingredient Id:<input type="text" v-model="ingredient_id"><br>
-            Amount:<input type="text" v-model="amount"><br>
-            <button v-on:click="ingredientsCreate(currentRecipe)">Add Ingredient</button><br>
-            <button>Close</button>
-          </form>
-        </dialog>
-        <!-- Delete Recipe -->
-        <button v-on:click="recipeDestroy(recipe)">Delete</button>
+    </section>
+    <!-- List Recipes -->
+    <section class="section bg-admin-recipes">
+      <div class="container">
+        <h2><b>All Recipes</b></h2>
+        <div class="row">
+          <div class="col-lg-4" v-for="recipe in recipes" v-bind:key="recipe.id">
+            <!-- Recipes Cards -->
+            <div class="services-box p-4 mt-4 bg-light"> 
+              <h2>{{ recipe.name }}</h2>
+              <img :src="recipe.image" width="300px">
+              <!-- List Ingredients -->
+              <ul> 
+                <li v-for="ingredient in recipe.ingredient_lists" v-bind:key="ingredient.id"> {{ ingredient.amount }} {{ ingredient.ingredients }}</li>
+              </ul>
+              <!-- List directions -->
+              <h4>Directions: </h4>
+              <ol>
+                <li v-for="direction in recipe.directions" v-bind:key="direction.id">{{ direction }}</li>
+              </ol>
+              <button v-on:click="recipeShow(recipe)">Edit</button>
+              <!-- Delete Recipe -->
+              <button v-on:click="recipeDestroy(recipe)">Delete</button>
+            </div>
+              <!-- Update Recipe Modal -->
+              <dialog id="recipe-info">
+                <form method="dialog">
+                  <h3>{{ currentRecipe.name }}</h3><br>
+                  Name: <input type="text" v-model="currentRecipe.name"> <br>
+                  Directions: <input type="text" v-model="currentRecipe.directions"> <br>
+                  Image Url: <input type="text" v-model="currentRecipe.image"> <br>
+                  <button v-on:click="recipeUpdate(currentRecipe)">Update</button><br> 
+                  INGREDIENTS<br>
+                  <ul> 
+                    <li v-for="ingredient in currentRecipe.ingredient_lists" v-bind:key="ingredient.id">
+                      {{ ingredient.amount }} {{ ingredient.ingredients }}
+                      <button v-on:click="ingredientsDestroy(ingredient)">Remove</button>
+                    </li>
+                  </ul>
+                  Ingredient Id:<input type="text" v-model="ingredient_id"><br>
+                  Amount:<input type="text" v-model="amount"><br>
+                  <button v-on:click="ingredientsCreate(currentRecipe)">Add Ingredient</button><br>
+                  <button>Close</button>
+                </form>
+              </dialog>
+          </div>
+        </div> 
       </div>
+    </section>
   </div>
   <!-- Admin denied -->
   <div v-else>
