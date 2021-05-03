@@ -17,6 +17,9 @@
                     <li class="nav-item">
                         <a href="/recipes" class="nav-link smoothlink">All Drinks</a>
                     </li>
+                    <li class="nav-item">
+                        <router-link v-bind:to="`/recipes/${path}`" class="nav-link smoothlink">Roll the Dice</router-link>
+                    </li>
                     <li class="nav-item" v-if="isLoggedIn()">
                         <a href="/user" class="nav-link smoothlink">My Profile</a>
                     </li>
@@ -60,9 +63,17 @@
 
 <script>
 export default {
+  data: function () {
+    return {
+      path: this.getRandomInt(10),
+    };
+  },
   methods: {
     isLoggedIn: function () {
       return localStorage.getItem("jwt");
+    },
+    getRandomInt: function (max) {
+      return Math.floor(Math.random() * max);
     },
   },
 };

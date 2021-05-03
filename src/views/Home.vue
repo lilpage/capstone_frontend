@@ -9,11 +9,10 @@
                         <div class="col-lg-6">
                             <div class="home-content">
                                 <h1 id="greeting-message">You <br> deserve <br> a drink</h1>
-                                <!-- <img src="/images/home-border.png" height="15" alt=""> -->
                                 <p class="text-muted mt-4 f-20"></p>
                                 <div class="mt-4 pt-2">
                                     <a href="/recipes" class="btn btn-primary mr-3">Get drinking</a>
-                                    <a href="/" class="btn btn-primary mr-3">I can't decide!</a>
+                                    <router-link v-bind:to="`/recipes/${path}`" class="btn btn-primary mr-3">I can't decide!</router-link>
                                 </div>
                             </div>
                         </div>
@@ -24,8 +23,6 @@
                                 <div class="animation-2"></div>
                                 <div class="animation-3"></div>
 
-
-                                <!-- <img src="/images/features/tempsplash.jpg" class="img-fluid" alt=""> -->
                             </div>
                         </div>
                     </div>
@@ -43,3 +40,18 @@
   width: 100%;
 }
 </style>
+
+<script>
+export default {
+  data: function () {
+    return {
+      path: this.getRandomInt(10),
+    };
+  },
+  methods: {
+    getRandomInt: function (max) {
+      return Math.floor(Math.random() * max);
+    },
+  },
+};
+</script>

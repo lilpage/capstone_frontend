@@ -24,10 +24,10 @@
                     </router-link>
                     <!-- Favortie/Unfavorite Button -->
                     <div v-if="!isFavorited(recipe)">
-                      <button v-on:click="addToFavorites(recipe)" class="btn btn-warning mr-3 mt-3">Favorite</button>
+                      <button v-on:click="toggleFavorite(recipe)" class="btn btn-warning mr-3 mt-3">Favorite</button>
                     </div>
                     <div v-else>
-                      <button v-on:click="addToFavorites(recipe)" class="btn btn-danger mr-3 mt-3">Favorited!</button>
+                      <button v-on:click="toggleFavorite(recipe)" class="btn btn-danger mr-3 mt-3">Favorited!</button>
                     </div>
                 </div>
             </div>
@@ -61,19 +61,26 @@ export default {
         this.recipes = response.data;
       });
     },
-    addToFavorites: function (recipe) {
+    toggleFavorite: function (recipe) {
       let params = {
         user_id: localStorage.getItem("user_id"),
         recipe_id: recipe.id,
       };
-      axios.post("/api/favorites", params).then((response) => {
-        console.log(response.data);
-      });
+      if (recipe.favorited) {
+        axios.delete("/api/favorites/" + recipe.favorites[0].id).then(() => {
+          console.log("Removed from favorites");
+        });
+      } else {
+        axios.post("/api/favorites", params).then((response) => {
+          console.log("Favorited!", response.data);
+        });
+      }
     },
     isFavorited: function (recipe) {
       if (recipe.favorited == true) {
-        console.log(recipe.id);
         return true;
+      } else {
+        return false;
       }
     },
   },
