@@ -22,8 +22,13 @@
                     <router-link v-bind:to="`/recipes/${recipe.id}`">
                       <button class="btn btn-primary mr-3 mt-3">See More</button>
                     </router-link>
-                    <!-- Button for action -->
-                    <button v-on:click="addToFavorites(recipe)" class="btn btn-warning mr-3 mt-3">Favorite</button>
+                    <!-- Favortie/Unfavorite Button -->
+                    <div v-if="!isFavorited(recipe)">
+                      <button v-on:click="addToFavorites(recipe)" class="btn btn-warning mr-3 mt-3">Favorite</button>
+                    </div>
+                    <div v-else>
+                      <button v-on:click="addToFavorites(recipe)" class="btn btn-danger mr-3 mt-3">Favorited!</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,6 +69,12 @@ export default {
       axios.post("/api/favorites", params).then((response) => {
         console.log(response.data);
       });
+    },
+    isFavorited: function (recipe) {
+      if (recipe.favorited == true) {
+        console.log(recipe.id);
+        return true;
+      }
     },
   },
 };
