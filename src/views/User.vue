@@ -19,12 +19,12 @@
         <div id= "user-recipes" class="container">
           <h2 class="text-light"><b>Your Favorited Recipes</b></h2>
           <!-- Recipes Cards -->  
-          <div class="row">
-            <!-- Empty Favorties Array -->
-            <div v-if="this.favorites.length === 0">
-              <p>You don't like anything yet! Go looking?</p>
-            </div>
-            <div v-else>
+          <!-- Empty Favorties Array -->
+          <div v-if="this.favorites.length === 0">
+            <p>You don't like anything yet! Go looking?</p>
+          </div>
+          <div v-else>
+            <div class="row">
               <div class="col-lg-4" v-for="favorite in favorites" v-bind:key="favorite.id">
                     <div class="services-box bg-light p-4 mt-4">
                         <img :src="favorite.image" width="300">
@@ -41,6 +41,9 @@
         </div>
       </div>
     </section>
+
+
+
     <!-- Fridge Start -->
     <section class="section bg-fridge">
       <div id="user-fridge" class="container">
@@ -51,6 +54,9 @@
           <p>Your fridge is empty! Add something?</p>
         </div>
         <div v-else>
+          <label for="add-to-fridge">Add to Fridge</label>
+          <input type="text" id="add-to-fridge" placeholder="type ingredient....">
+          <button>Add</button>
           <div v-for="fridge in fridges" v-bind:key="fridge.id">  
             <ul class="list-group">
               <li class="list-group-item list-group-item-light">
@@ -63,9 +69,13 @@
           </div>
         </div>
         <!-- List End -->
+        <h2 class="text-light mt-3"><b>You can make:</b></h2>
       </div>
       <!-- Fridge End -->
     </section>
+
+
+
     <!-- ACCOUNT MANAGEMENT -->
     <!-- Delete Account -->
     <div class="container mt-3 mb-3">
