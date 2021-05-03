@@ -37,7 +37,7 @@
                                         <div class="row justify-content-center">
                                             <div class="col-lg-11">
 
-                                                <div class="p-4">
+                                                <div class="p-4 br-dotted">
                                                     <div class="text-center mt-3">
                                                         <h1 class="text-warning"><b>{{ recipe.name }}</b></h1>
                                                         <img src="/images/home-border.png">

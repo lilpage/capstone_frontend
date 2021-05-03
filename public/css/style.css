@@ -234,6 +234,10 @@ p {
   font-family: 'Slackey';
 }
 
+.br-dotted {
+  border: 5px dotted lightseagreen;
+}
+
 /* TESTING END */
 
 
