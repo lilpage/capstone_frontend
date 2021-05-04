@@ -48,15 +48,17 @@
     <section class="section bg-fridge">
       <div id="user-fridge" class="container">
         <h2 class="pt-4 mt-4 text-light"><b>Your Fridge</b></h2> 
-        <!-- Ingredient List -->
-        <!-- For Empty Ingredients List -->
+        <!-- Add to Fridge -->
+        <label for="add-to-fridge">Add to Fridge</label>
+        <input type="text" id="add-to-fridge" v-model="ingredient_id" placeholder="ingredient id...">
+        <p>{{ ingredient_id }}</p>
+        <button v-on:click="fridgeAdd()">Add</button>
+        <!-- Empty Fridge -->
         <div v-if="this.fridges.length === 0">
           <p>Your fridge is empty! Add something?</p>
         </div>
+        <!-- Display Fridge -->
         <div v-else>
-          <label for="add-to-fridge">Add to Fridge</label>
-          <input type="text" id="add-to-fridge" placeholder="type ingredient....">
-          <button>Add</button>
           <div v-for="fridge in fridges" v-bind:key="fridge.id">  
             <ul class="list-group">
               <li class="list-group-item list-group-item-light">
@@ -68,10 +70,10 @@
             </ul>
           </div>
         </div>
-        <!-- List End -->
+        <!-- You Can Make List -->
         <h2 class="text-light mt-3"><b>You can make:</b></h2>
       </div>
-      <!-- Fridge End -->
+    <!-- Fridge End -->
     </section>
 
 
@@ -100,6 +102,7 @@ export default {
       favorites: [],
       fridges: [],
       current_user: {},
+      ingredient_id: "",
     };
   },
   created: function () {
@@ -138,6 +141,15 @@ export default {
       axios.get("/api/fridges").then((response) => {
         console.log(response.data);
         this.fridges = response.data;
+      });
+    },
+    fridgeAdd: function () {
+      let params = {
+        ingredient_id: this.ingredient_id,
+        user_id: localStorage.getItem("user_id"),
+      };
+      axios.post("/api/fridges", params).then((response) => {
+        console.log(response.data);
       });
     },
     fridgeUpdate: function (fridge) {
