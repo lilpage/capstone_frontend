@@ -13,12 +13,15 @@
         </div>
       </div>
     </section>
+
+
     <!-- Recipes Start -->
     <section class="section bg-favorites">
       <div>
         <div id= "user-recipes" class="container">
           <h2 class="text-light"><b>Your Favorited Recipes</b></h2>
-          <!-- Recipes Cards -->  
+ 
+
           <!-- Empty Favorties Array -->
           <div v-if="this.favorites.length === 0">
             <p>You don't like anything yet! Go looking?</p>
@@ -48,15 +51,17 @@
     <section class="section bg-fridge">
       <div id="user-fridge" class="container">
         <h2 class="pt-4 mt-4 text-light"><b>Your Fridge</b></h2> 
+
         <!-- Add to Fridge -->
         <label for="add-to-fridge">Add to Fridge</label>
         <input type="text" id="add-to-fridge" v-model="ingredient_id" placeholder="ingredient id...">
-        <p>{{ ingredient_id }}</p>
         <button v-on:click="fridgeAdd()">Add</button>
+
         <!-- Empty Fridge -->
         <div v-if="this.fridges.length === 0">
           <p>Your fridge is empty! Add something?</p>
         </div>
+
         <!-- Display Fridge -->
         <div v-else>
           <div v-for="fridge in fridges" v-bind:key="fridge.id">  
@@ -70,8 +75,15 @@
             </ul>
           </div>
         </div>
+
         <!-- You Can Make List -->
         <h2 class="text-light mt-3"><b>You can make:</b></h2>
+          <!-- if curren_user.fridge["ingreident_id"] array contains all of recipe.ingredient_lists["ingredient_id"], display-->
+         <!-- need 2 arrays, to compare against eachother using .inclues in a while < length loop -->
+         <div v-for="ingredient_id in fridge_id_array" v-bind:key="ingredient_id.id">
+           <p>{{ingredient_id}}</p>
+          </div>
+
       </div>
     <!-- Fridge End -->
     </section>
@@ -79,10 +91,12 @@
 
 
     <!-- ACCOUNT MANAGEMENT -->
+
     <!-- Delete Account -->
     <div class="container mt-3 mb-3">
       <h2 class="text-info">Account Management</h2>
       <button v-on:click="userDestroy()" class="btn btn-primary mt-3 mb-3">Delete account</button>
+
         <!-- ADMIN ONLY -->
         <div id="admin-access" v-if="this.current_user.user.admin">
           <router-link to="/admin/recipes/edit">
@@ -103,14 +117,18 @@ export default {
       fridges: [],
       current_user: {},
       ingredient_id: "",
+      recipe_id_array: [],
+      fridge_id_array: [],
     };
   },
   created: function () {
     this.favoritesIndex();
     this.userShow();
     this.fridgeIndex();
+    this.makeArray();
   },
   methods: {
+    // User Methods
     userShow: function () {
       axios.get("/api/users").then((response) => {
         console.log(response.data);
@@ -125,6 +143,8 @@ export default {
         });
       }
     },
+
+    // Favorite Methods
     favoritesIndex: function () {
       axios.get("/api/favorites").then((response) => {
         console.log(response.data);
@@ -137,6 +157,8 @@ export default {
         this.favorites.splice(this.favorites.indexOf(favorite), 1);
       });
     },
+
+    // Fridge Methods
     fridgeIndex: function () {
       axios.get("/api/fridges").then((response) => {
         console.log(response.data);
@@ -161,6 +183,14 @@ export default {
       axios.delete("/api/fridges/" + fridge.id).then(() => {
         console.log("Deleted!");
         this.fridges.splice(this.fridges.indexOf(fridge), 1);
+      });
+    },
+
+    // You Can MAke Methods
+    makeArray: function () {
+      axios.get("/api/fridges/array").then((response) => {
+        this.fridge_id_array = response.data;
+        console.log(response.data);
       });
     },
   },
