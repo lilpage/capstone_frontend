@@ -78,12 +78,23 @@
 
         <!-- You Can Make List -->
         <h2 class="text-light mt-3"><b>You can make:</b></h2>
-          <!-- if curren_user.fridge["ingreident_id"] array contains all of recipe.ingredient_lists["ingredient_id"], display-->
-         <!-- need 2 arrays, to compare against eachother using .inclues in a while < length loop -->
-         <div v-for="ingredient_id in fridge_id_array" v-bind:key="ingredient_id.id">
-           <p>{{ingredient_id}}</p>
-          </div>
+          <!-- v-for of recipes -->
+         <!-- <div v-for="recipe in recipes" v-bind:key="recipe.id">
+           <h3>{{recipe.name}}</h3>
+           <div v-for="ingredient in recipe.ingredient_lists" v-bind:key="ingredient.id"> 
+             {{ ingredient.ingredient_id }}
+             
+           </div>
+         </div> -->
 
+         <h1>FRIDGE</h1>
+         {{fridge_id_array}}
+        <h2>TESTING</h2>
+        {{ rustynail.ingredient_lists }}
+        {{ pinklady.ingredient_lists }}
+        {{ maitai.ingredient_lists }}
+        {{ robroy.ingredient_lists }}
+      
       </div>
     <!-- Fridge End -->
     </section>
@@ -117,15 +128,30 @@ export default {
       fridges: [],
       current_user: {},
       ingredient_id: "",
-      recipe_id_array: [],
+      recipes: [],
+      possible_recipes: [],
       fridge_id_array: [],
+      // Recipes
+      rustynail: {},
+      robroy: {},
+      brownderby: {},
+      mintjulep: {},
+      mojito: {},
+      maitai: {},
+      gintonic: {},
+      pinklady: {},
+      moscowmule: {},
+      pimmscup: {},
     };
   },
   created: function () {
     this.favoritesIndex();
     this.userShow();
     this.fridgeIndex();
-    this.makeArray();
+    this.fridgeArray();
+  },
+  mounted: function () {
+    this.indexPossibleRecipes();
   },
   methods: {
     // User Methods
@@ -186,11 +212,26 @@ export default {
       });
     },
 
-    // You Can MAke Methods
-    makeArray: function () {
+    // You Can Make Methods
+    fridgeArray: function () {
       axios.get("/api/fridges/array").then((response) => {
         this.fridge_id_array = response.data;
         console.log(response.data);
+      });
+    },
+    indexPossibleRecipes: function () {
+      axios.get("/api/recipes/array").then((response) => {
+        console.log(response.data);
+        this.rustynail = response.data[0];
+        this.robroy = response.data[1];
+        this.brownderby = response.data[2];
+        this.mintjulep = response.data[3];
+        this.mojito = response.data[4];
+        this.maitai = response.data[5];
+        this.gintonic = response.data[6];
+        this.pinklady = response.data[7];
+        this.moscowmule = response.data[8];
+        this.pimmscup = response.data[9];
       });
     },
   },
