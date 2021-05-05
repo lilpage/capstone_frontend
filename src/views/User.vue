@@ -78,21 +78,35 @@
 
         <!-- You Can Make List -->
         <h2 class="text-light mt-3"><b>You can make:</b></h2>
-          <!-- v-for of recipes -->
-         <!-- <div v-for="recipe in recipes" v-bind:key="recipe.id">
-           <h3>{{recipe.name}}</h3>
-           <div v-for="ingredient in recipe.ingredient_lists" v-bind:key="ingredient.id"> 
-             {{ ingredient.ingredient_id }}
-             
-           </div>
-         </div> -->
-
-         <h1>FRIDGE</h1>
-         {{fridge_id_array}}
-        <h2>TESTING</h2>
-        {{ rustynail.ingredient_lists }}
         <div v-if="display_rn">
           <h2>Rusty Nail</h2>
+        </div>
+        <div v-if="display_rr">
+          <h2>Rob Roy</h2>
+        </div>
+        <div v-if="display_bd">
+          <h2>Brown Derby</h2>
+        </div>
+        <div v-if="display_mj">
+          <h2>Mint Julep</h2>
+        </div>
+        <div v-if="display_moj">
+          <h2>Mojito</h2>
+        </div>
+        <div v-if="display_mt">
+          <h2>Mai-Tai</h2>
+        </div>
+        <div v-if="display_gt">
+          <h2>Gin & Tonic</h2>
+        </div>
+        <div v-if="display_pl">
+          <h2>Pink Lady</h2>
+        </div>
+        <div v-if="display_mm">
+          <h2>Moscow Mule</h2>
+        </div>
+        <div v-if="display_pc">
+          <h2>Pimm's Cup</h2>
         </div>
       
       </div>
@@ -144,6 +158,15 @@ export default {
       pimmscup: {},
       // Display Recipe Booleans
       display_rn: false,
+      display_rr: false,
+      display_bd: false,
+      display_mj: false,
+      display_moj: false,
+      display_mt: false,
+      display_gt: false,
+      display_pl: false,
+      display_mm: false,
+      display_pc: false,
     };
   },
   created: function () {
@@ -233,6 +256,16 @@ export default {
         this.moscowmule = response.data[8];
         this.pimmscup = response.data[9];
         this.displayRN();
+        this.displayRR();
+        this.displayBD();
+        this.displayMJ();
+        this.displayMJ();
+        this.displayMOJ();
+        this.displayMT();
+        this.displayGT();
+        this.displayPL();
+        this.displayMM();
+        this.displayPC();
       });
     },
     displayRN: function () {
@@ -241,7 +274,6 @@ export default {
       this.fridge_id_array.map(function (x) {
         fridge_array.push(x.ingredient_id);
       });
-      // console.log(fridge_array);
 
       if (
         fridge_array.includes(
@@ -270,8 +302,497 @@ export default {
       } else {
         checker = false;
       }
+      // FINAL CHECK
       if (checker) {
         this.display_rn = true;
+      }
+    },
+    displayRR: function () {
+      var fridge_array = [];
+      var checker = true;
+      this.fridge_id_array.map(function (x) {
+        fridge_array.push(x.ingredient_id);
+      });
+
+      if (
+        fridge_array.includes(this.robroy.ingredient_lists[0]["ingredient_id"])
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(this.robroy.ingredient_lists[1]["ingredient_id"])
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(this.robroy.ingredient_lists[2]["ingredient_id"])
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(this.robroy.ingredient_lists[3]["ingredient_id"])
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      // FINAL CHECK
+      if (checker) {
+        this.display_rr = true;
+      }
+    },
+    displayBD: function () {
+      var fridge_array = [];
+      var checker = true;
+      this.fridge_id_array.map(function (x) {
+        fridge_array.push(x.ingredient_id);
+      });
+
+      if (
+        fridge_array.includes(
+          this.brownderby.ingredient_lists[0]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.brownderby.ingredient_lists[1]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.brownderby.ingredient_lists[2]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.brownderby.ingredient_lists[3]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      // FINAL CHECK
+      if (checker) {
+        this.display_bd = true;
+      }
+    },
+    displayMJ: function () {
+      var fridge_array = [];
+      var checker = true;
+      this.fridge_id_array.map(function (x) {
+        fridge_array.push(x.ingredient_id);
+      });
+
+      if (
+        fridge_array.includes(
+          this.mintjulep.ingredient_lists[0]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.mintjulep.ingredient_lists[1]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.mintjulep.ingredient_lists[2]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.mintjulep.ingredient_lists[3]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      // FINAL CHECK
+      if (checker) {
+        this.display_mj = true;
+      }
+    },
+    displayMOJ: function () {
+      var fridge_array = [];
+      var checker = true;
+      this.fridge_id_array.map(function (x) {
+        fridge_array.push(x.ingredient_id);
+      });
+
+      if (
+        fridge_array.includes(this.mojito.ingredient_lists[0]["ingredient_id"])
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(this.mojito.ingredient_lists[1]["ingredient_id"])
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(this.mojito.ingredient_lists[2]["ingredient_id"])
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(this.mojito.ingredient_lists[3]["ingredient_id"])
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(this.mojito.ingredient_lists[4]["ingredient_id"])
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(this.mojito.ingredient_lists[5]["ingredient_id"])
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(this.mojito.ingredient_lists[6]["ingredient_id"])
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      // FINAL CHECK
+      if (checker) {
+        this.display_moj = true;
+      }
+    },
+    displayMT: function () {
+      var fridge_array = [];
+      var checker = true;
+      this.fridge_id_array.map(function (x) {
+        fridge_array.push(x.ingredient_id);
+      });
+
+      if (
+        fridge_array.includes(this.maitai.ingredient_lists[0]["ingredient_id"])
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(this.maitai.ingredient_lists[1]["ingredient_id"])
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(this.maitai.ingredient_lists[2]["ingredient_id"])
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(this.maitai.ingredient_lists[3]["ingredient_id"])
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(this.maitai.ingredient_lists[4]["ingredient_id"])
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(this.maitai.ingredient_lists[5]["ingredient_id"])
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      // FINAL CHECK
+      if (checker) {
+        this.display_mt = true;
+      }
+    },
+    displayGT: function () {
+      var fridge_array = [];
+      var checker = true;
+      this.fridge_id_array.map(function (x) {
+        fridge_array.push(x.ingredient_id);
+      });
+
+      if (
+        fridge_array.includes(
+          this.gintonic.ingredient_lists[0]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.gintonic.ingredient_lists[1]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.gintonic.ingredient_lists[2]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      // FINAL CHECK
+      if (checker) {
+        this.display_gt = true;
+      }
+    },
+    displayPL: function () {
+      var fridge_array = [];
+      var checker = true;
+      this.fridge_id_array.map(function (x) {
+        fridge_array.push(x.ingredient_id);
+      });
+
+      if (
+        fridge_array.includes(
+          this.pinklady.ingredient_lists[0]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.pinklady.ingredient_lists[1]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.pinklady.ingredient_lists[2]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.pinklady.ingredient_lists[3]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.pinklady.ingredient_lists[4]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.pinklady.ingredient_lists[5]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      // FINAL CHECK
+      if (checker) {
+        this.display_pl = true;
+      }
+    },
+    displayMM: function () {
+      var fridge_array = [];
+      var checker = true;
+      this.fridge_id_array.map(function (x) {
+        fridge_array.push(x.ingredient_id);
+      });
+
+      if (
+        fridge_array.includes(
+          this.moscowmule.ingredient_lists[0]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.moscowmule.ingredient_lists[1]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.moscowmule.ingredient_lists[2]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.moscowmule.ingredient_lists[3]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.moscowmule.ingredient_lists[4]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      // FINAL CHECK
+      if (checker) {
+        this.display_mm = true;
+      }
+    },
+    displayPC: function () {
+      var fridge_array = [];
+      var checker = true;
+      this.fridge_id_array.map(function (x) {
+        fridge_array.push(x.ingredient_id);
+      });
+
+      if (
+        fridge_array.includes(
+          this.pimmscup.ingredient_lists[0]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.pimmscup.ingredient_lists[1]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.pimmscup.ingredient_lists[2]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.pimmscup.ingredient_lists[3]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.pimmscup.ingredient_lists[4]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.pimmscup.ingredient_lists[5]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.pimmscup.ingredient_lists[6]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      // FINAL CHECK
+      if (checker) {
+        this.display_pc = true;
       }
     },
   },
