@@ -77,38 +77,59 @@
         </div>
 
         <!-- You Can Make List -->
-        <h2 class="text-light mt-3"><b>You can make:</b></h2>
-        <div v-if="display_rn">
-          <h2>Rusty Nail</h2>
-        </div>
-        <div v-if="display_rr">
-          <h2>Rob Roy</h2>
-        </div>
-        <div v-if="display_bd">
-          <h2>Brown Derby</h2>
-        </div>
-        <div v-if="display_mj">
-          <h2>Mint Julep</h2>
-        </div>
-        <div v-if="display_moj">
-          <h2>Mojito</h2>
-        </div>
-        <div v-if="display_mt">
-          <h2>Mai-Tai</h2>
-        </div>
-        <div v-if="display_gt">
-          <h2>Gin & Tonic</h2>
-        </div>
-        <div v-if="display_pl">
-          <h2>Pink Lady</h2>
-        </div>
-        <div v-if="display_mm">
-          <h2>Moscow Mule</h2>
-        </div>
-        <div v-if="display_pc">
-          <h2>Pimm's Cup</h2>
-        </div>
-      
+        <div class="text-light mt-3"><ul>
+          <h2><b>You can make:</b></h2>
+          <div v-if="display_rn">
+          <router-link v-bind:to="`/recipes/1`">
+            <li><h2 class="text-light">Rusty Nail</h2></li>
+            </router-link>
+          </div>
+          <div v-if="display_rr">
+            <router-link v-bind:to="`/recipes/2`">
+            <li><h2 class="text-light">Rob Roy</h2></li>
+            </router-link>
+          </div>
+          <div v-if="display_bd">
+            <router-link v-bind:to="`/recipes/3`">
+            <li><h2 class="text-light">Brown Derby</h2></li>
+            </router-link>
+          </div>
+          <div v-if="display_mj">
+            <router-link v-bind:to="`/recipes/4`">
+            <li><h2 class="text-light">Mint Julep</h2></li>
+            </router-link>
+          </div>
+          <div v-if="display_moj">
+            <router-link v-bind:to="`/recipes/5`">
+            <li><h2 class="text-light">Mojito</h2></li>
+            </router-link>
+          </div>
+          <div v-if="display_mt">
+            <router-link v-bind:to="`/recipes/6`">
+            <li><h2 class="text-light">Mai Tai</h2></li>
+            </router-link>
+          </div>
+          <div v-if="display_gt">
+            <router-link v-bind:to="`/recipes/7`">
+            <li><h2 class="text-light">Gin & Tonic</h2></li>
+            </router-link>
+          </div>
+          <div v-if="display_pl">
+            <router-link v-bind:to="`/recipes/8`">
+            <li><h2 class="text-light">Pink Lady</h2></li>
+            </router-link>
+          </div>
+          <div v-if="display_mm">
+            <router-link v-bind:to="`/recipes/9`">
+            <li><h2 class="text-light">Moscow Mule</h2></li>
+            </router-link>
+          </div>
+          <div v-if="display_pc">
+            <router-link v-bind:to="`/recipes/10`">
+            <li><h2 class="text-light">Pimm's Cup</h2></li>
+            </router-link>
+          </div>
+        </ul></div>
       </div>
     <!-- Fridge End -->
     </section>
@@ -268,6 +289,7 @@ export default {
         this.displayPC();
       });
     },
+    // A travesty:
     displayRN: function () {
       var fridge_array = [];
       var checker = true;

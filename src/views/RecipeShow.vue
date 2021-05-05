@@ -49,9 +49,7 @@
                                                         </div>
                                                         <div>
                                                           <h2 class="text-info">Directions: </h2>
-                                                          <ol>
-                                                            <li v-for="direction in recipe.directions" v-bind:key="direction.id">{{ direction }}</li>
-                                                          </ol>
+                                                          <p>{{recipe.directions}}</p>
                                                         </div>
                                                          <!-- Tags list -->
                                                         <ul id ="tags"> 
