@@ -91,9 +91,9 @@
          {{fridge_id_array}}
         <h2>TESTING</h2>
         {{ rustynail.ingredient_lists }}
-        {{ pinklady.ingredient_lists }}
-        {{ maitai.ingredient_lists }}
-        {{ robroy.ingredient_lists }}
+        <div v-if="display_rn">
+          <h2>Rusty Nail</h2>
+        </div>
       
       </div>
     <!-- Fridge End -->
@@ -142,6 +142,8 @@ export default {
       pinklady: {},
       moscowmule: {},
       pimmscup: {},
+      // Display Recipe Booleans
+      display_rn: false,
     };
   },
   created: function () {
@@ -149,15 +151,14 @@ export default {
     this.userShow();
     this.fridgeIndex();
     this.fridgeArray();
-  },
-  mounted: function () {
     this.indexPossibleRecipes();
   },
+  mounted: function () {},
   methods: {
     // User Methods
     userShow: function () {
       axios.get("/api/users").then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.current_user = response.data;
       });
     },
@@ -173,7 +174,7 @@ export default {
     // Favorite Methods
     favoritesIndex: function () {
       axios.get("/api/favorites").then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.favorites = response.data;
       });
     },
@@ -187,7 +188,7 @@ export default {
     // Fridge Methods
     fridgeIndex: function () {
       axios.get("/api/fridges").then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.fridges = response.data;
       });
     },
@@ -221,7 +222,6 @@ export default {
     },
     indexPossibleRecipes: function () {
       axios.get("/api/recipes/array").then((response) => {
-        console.log(response.data);
         this.rustynail = response.data[0];
         this.robroy = response.data[1];
         this.brownderby = response.data[2];
@@ -232,7 +232,47 @@ export default {
         this.pinklady = response.data[7];
         this.moscowmule = response.data[8];
         this.pimmscup = response.data[9];
+        this.displayRN();
       });
+    },
+    displayRN: function () {
+      var fridge_array = [];
+      var checker = true;
+      this.fridge_id_array.map(function (x) {
+        fridge_array.push(x.ingredient_id);
+      });
+      // console.log(fridge_array);
+
+      if (
+        fridge_array.includes(
+          this.rustynail.ingredient_lists[0]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.rustynail.ingredient_lists[1]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (
+        fridge_array.includes(
+          this.rustynail.ingredient_lists[2]["ingredient_id"]
+        )
+      ) {
+        console.log(true);
+      } else {
+        checker = false;
+      }
+      if (checker) {
+        this.display_rn = true;
+      }
     },
   },
 };
