@@ -122,7 +122,6 @@ export default {
       };
       axios.post("/api/favorites", params).then((response) => {
         console.log(response.data);
-        this.$router.push("/recipes");
       });
     },
   },

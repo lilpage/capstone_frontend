@@ -65,7 +65,7 @@
 export default {
   data: function () {
     return {
-      path: this.getRandomInt(10),
+      path: this.getRandomInt(9),
     };
   },
   methods: {
@@ -73,7 +73,7 @@ export default {
       return localStorage.getItem("jwt");
     },
     getRandomInt: function (max) {
-      return Math.floor(Math.random() * max);
+      return Math.floor(Math.random() * max + 1);
     },
   },
 };
