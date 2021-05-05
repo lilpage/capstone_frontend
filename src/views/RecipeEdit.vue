@@ -55,9 +55,8 @@
               </ul>
               <!-- List directions -->
               <h4>Directions: </h4>
-              <ol>
-                <li v-for="direction in recipe.directions" v-bind:key="direction.id">{{ direction }}</li>
-              </ol>
+              {{ recipe.directions }}
+              <br>
               <button v-on:click="recipeShow(recipe)">Edit</button>
               <!-- Delete Recipe -->
               <button v-on:click="recipeDestroy(recipe)">Delete</button>

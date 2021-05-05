@@ -45,12 +45,12 @@
 export default {
   data: function () {
     return {
-      path: this.getRandomInt(10),
+      path: this.getRandomInt(9),
     };
   },
   methods: {
     getRandomInt: function (max) {
-      return Math.floor(Math.random() * max);
+      return Math.floor(Math.random() * max + 1);
     },
   },
 };
