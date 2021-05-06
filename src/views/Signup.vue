@@ -15,7 +15,7 @@
                             <div class="login-box">
                                 <div class="row align-items-center no-gutters">
                                     <div class="col-lg-6">
-                                        <div class="bg-light">
+                                        <div class="bg-signup">
 
                                             <div class="row justify-content-center">
                                                 <div class="col-lg-10">
@@ -23,11 +23,6 @@
                                                     <div
                                                         class="home-img login-img text-center d-none d-lg-inline-block">
 
-                                                        <div class="animation-2"></div>
-                                                        <div class="animation-3"></div>
-
-
-                                                        <img src="images/features/img-4.png" class="img-fluid" alt="">
                                                     </div>
 
                                                 </div>
@@ -44,10 +39,9 @@
 
                                                 <div class="p-4">
                                                     <div class="text-center mt-3">
-                                                        <p id="db-logo">Drinking Buddy</p>
-                                                        <h2 class="text-muted mt-3">Get Started Drinking!
-
-                                                        </h2>
+                                                        <h1 id="db-logo">Welcome</h1>
+                                                        <h2 id="db-logo">to Drinking Buddy</h2>
+                                                   
                                                     </div>
                                                     <div class="p-3 custom-form">
                                                         <form v-on:submit.prevent="submit()">

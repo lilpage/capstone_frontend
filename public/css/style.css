@@ -1042,6 +1042,16 @@ p {
   background-size: cover;
 }
 
+.bg-signup {
+  position: relative;
+  padding: 300px 0px 300px 0px;
+  background: url('/images/features/tempsplash.jpg') no-repeat center top 40px fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .home-badge p {
   background-color: #f0f9fa;
   display: inline-block;
