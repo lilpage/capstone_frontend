@@ -52,17 +52,27 @@
                                                           <p>{{recipe.directions}}</p>
                                                         </div>
                                                          <!-- Tags list -->
-                                                        <ul id ="tags"> 
+                                                        <!-- <ul id ="tags"> 
                                                           <li v-for="tag in recipe.tags" v-bind:key="tag.id"> {{ tag.name }} </li>
-                                                        </ul>
+                                                        </ul> -->
+
+
+                                                      <!-- Buttons -->
+                                                      <div>
                                                         <!-- Favorite  -->
-                                                        <button v-on:click="addToFavorites(recipe)" class="btn-primary">Add to Favorites</button>
-                                                        <router-link v-bind:to="`/recipes`">
-                                                          <button class="btn-primary ml-3">Back to All Recipes</button>
-                                                        </router-link>
-                                                        <p>TEST</p>
-                                                        <p v-if="recipe.favorited">YAY!</p>
-                                                        <p v-else>Boo!</p>
+                                                          <span v-if="!isFavorited()">
+                                                            <button v-on:click="toggleFavorite()" class="btn-danger">Add to Favorites</button>
+                                                          </span>
+                                                          <span v-else>
+                                                            <button v-on:click="toggleFavorite()" class="btn-warning">Favorited!</button>
+                                                          </span>
+                                                          <!-- Back to All Recipes -->
+                                                          <router-link v-bind:to="`/recipes`">
+                                                            <button class="btn-primary ml-3">Back to All Recipes</button>
+                                                          </router-link>
+                                                      </div>
+
+                                                      
                                                     </div>
                                                     <div class="p-3 custom-form">
   
@@ -118,14 +128,34 @@ export default {
         this.recipe = response.data;
       });
     },
-    addToFavorites: function (recipe) {
+    // addToFavorites: function (recipe) {
+    //   let params = {
+    //     user_id: localStorage.getItem("user_id"),
+    //     recipe_id: recipe.id,
+    //   };
+    //   axios.post("/api/favorites", params).then((response) => {
+    //     console.log(response.data);
+    //   });
+    // },
+    toggleFavorite: function () {
       let params = {
         user_id: localStorage.getItem("user_id"),
-        recipe_id: recipe.id,
+        recipe_id: this.recipe.id,
       };
-      axios.post("/api/favorites", params).then((response) => {
-        console.log(response.data);
-      });
+      // BUG
+      if (this.recipe.favorited) {
+        axios
+          .delete("/api/favorites/" + this.recipe.favorites[0].id)
+          .then(() => {
+            console.log("Removed from favorites");
+            this.recipe.favorited = false;
+          });
+      } else {
+        axios.post("/api/favorites", params).then((response) => {
+          console.log("Favorited!", response.data);
+          this.recipe.favorited = true;
+        });
+      }
     },
     isFavorited: function () {
       if (this.recipe.favorited == true) {
