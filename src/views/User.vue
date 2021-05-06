@@ -67,14 +67,16 @@
           <div v-for="fridge in fridges" v-bind:key="fridge.id">  
             <ul class="list-group">
               <li class="list-group-item list-group-item-light">
-                <p> {{ fridge.ingredient }} </p>
-                <button v-if="fridge.in_stock" v-on:click="fridgeUpdate(fridge)" class="btn btn-primary mr-3">Out of Stock</button>
+                <label v-if="fridge.in_stock" class="pr-3"> {{ fridge.ingredient }} </label>
+                <label v-else class="pr-3 text-danger" > {{ fridge.ingredient }} </label>
+                <button v-if="fridge.in_stock" v-on:click="fridgeUpdate(fridge)" class="btn btn-muted  mr-3">Out of Stock?</button>
                 <button v-else v-on:click="fridgeUpdate(fridge)" class="btn btn-primary mr-3">In Stock</button>
-                <button v-if="!fridge.in_stock" v-on:click="fridgeRemove(fridge)" class="btn btn-primary mr-3">Remove</button>
+                <button v-if="!fridge.in_stock" v-on:click="fridgeRemove(fridge)" class="btn btn-danger mr-3">Remove?</button>
               </li>
             </ul>
           </div>
         </div>
+
 
         <!-- You Can Make List -->
         <div class="text-light mt-3"><ul>
@@ -129,7 +131,8 @@
             <li><h2 class="text-light">Pimm's Cup</h2></li>
             </router-link>
           </div>
-        </ul></div>
+        </ul>
+        </div>
       </div>
     <!-- Fridge End -->
     </section>
@@ -247,7 +250,8 @@ export default {
     },
     fridgeUpdate: function (fridge) {
       axios.patch("/api/fridges/" + fridge.id).then((response) => {
-        console.log(response.data); // This should update the item on the page
+        console.log(response.data);
+        fridge.in_stock = !fridge.in_stock;
       });
     },
     fridgeRemove: function (fridge) {
