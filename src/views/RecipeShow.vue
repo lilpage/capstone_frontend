@@ -128,15 +128,6 @@ export default {
         this.recipe = response.data;
       });
     },
-    // addToFavorites: function (recipe) {
-    //   let params = {
-    //     user_id: localStorage.getItem("user_id"),
-    //     recipe_id: recipe.id,
-    //   };
-    //   axios.post("/api/favorites", params).then((response) => {
-    //     console.log(response.data);
-    //   });
-    // },
     toggleFavorite: function () {
       let params = {
         user_id: localStorage.getItem("user_id"),

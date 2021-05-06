@@ -5,7 +5,7 @@
         <a href="/" class="text-primary"><i class="mdi mdi-home h1"></i></a>
     </div>
 
-    <section class="bg-account-pages vh-100">
+    <section class="bg-login vh-100">
         <div class="display-table">
             <div class="display-table-cell">
                 <div class="container">
@@ -15,7 +15,7 @@
                             <div class="login-box">
                                 <div class="row align-items-center no-gutters">
                                     <div class="col-lg-6">
-                                        <div class="bg-light">
+                                        <div>
 
                                             <div class="row justify-content-center">
                                                 <div class="col-lg-10">
@@ -23,11 +23,6 @@
                                                     <div
                                                         class="home-img login-img text-center d-none d-lg-inline-block">
 
-                                                        <div class="animation-2"></div>
-                                                        <div class="animation-3"></div>
-
-
-                                                        <img src="images/features/img-4.png" class="img-fluid" alt="">
                                                     </div>
 
                                                 </div>
@@ -37,15 +32,14 @@
                                     </div>
 
 
-                                    <div class="col-lg-6">
+                                    <div class="bg-light col-lg-6">
 
                                         <div class="row justify-content-center">
                                             <div class="col-lg-11">
 
                                                 <div class="p-4">
                                                     <div class="text-center mt-3">
-                                                        <p id="db-logo">Drinking Buddy</p>
-                                                        <h2 class="text-muted mt-3">Welcome back!</h2>
+                                                        <h1 id="db-logo">Welcome back!</h1>
                                                     </div>
                                                     <div class="p-3 custom-form">
                                                         <form v-on:submit.prevent="submit()">
