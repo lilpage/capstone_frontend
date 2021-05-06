@@ -69,10 +69,12 @@ export default {
       if (recipe.favorited) {
         axios.delete("/api/favorites/" + recipe.favorites[0].id).then(() => {
           console.log("Removed from favorites");
+          recipe.favorited = false;
         });
       } else {
         axios.post("/api/favorites", params).then((response) => {
           console.log("Favorited!", response.data);
+          recipe.favorited = true;
         });
       }
     },

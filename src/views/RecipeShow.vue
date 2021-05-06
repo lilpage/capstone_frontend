@@ -60,6 +60,9 @@
                                                         <router-link v-bind:to="`/recipes`">
                                                           <button class="btn-primary ml-3">Back to All Recipes</button>
                                                         </router-link>
+                                                        <p>TEST</p>
+                                                        <p v-if="recipe.favorited">YAY!</p>
+                                                        <p v-else>Boo!</p>
                                                     </div>
                                                     <div class="p-3 custom-form">
   
@@ -123,6 +126,13 @@ export default {
       axios.post("/api/favorites", params).then((response) => {
         console.log(response.data);
       });
+    },
+    isFavorited: function () {
+      if (this.recipe.favorited == true) {
+        return true;
+      } else {
+        return false;
+      }
     },
   },
 };
